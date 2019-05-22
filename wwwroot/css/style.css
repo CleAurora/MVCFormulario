@@ -1,0 +1,25 @@
+form{
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 1px 1px 5px #ccc;
+    padding: 3em 2em;
+    margin-top: 20px;
+
+}
+
+form h2{
+    text-align: center;
+    text-transform: uppercase;
+}
+form input{
+    margin-bottom: 0.5em; 
+}
+form label{
+    text-transform: uppercase;
+}
+nav{
+    text-transform: uppercase;
+}
+nav li{
+    text-align: center;
+}

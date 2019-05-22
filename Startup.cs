@@ -26,6 +26,8 @@ namespace ex2WebMVC
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStaticFiles();
+            
             app.UseMvc(
                 rota => rota.MapRoute(
                     name: "default",

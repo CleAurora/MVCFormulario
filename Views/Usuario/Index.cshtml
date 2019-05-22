@@ -1,12 +1,23 @@
-<h1>Bem Vindo</h1>
-<form action="/Usuario/Cadastrar" method = "POST">
-    <label for="nome">Nome:</label>
-    <input type = "text" name = "nome">
-    <label for = "email">Email</label>
-    <input type="text" name = "email">
-    <label for="senha"> Senha: </label>
-    <input type="password" name="senha">
-    <label for = "dataNascimento">Data de Nascimento</label>
-    <input type="date" name = "dataNascimento">
-    <input type="submit" value= "Cadastrar">
-</form>
+@{
+    Layout = "MasterPage";
+    ViewBag.Title = "Cadastro de Usuários";
+
+
+}
+<div class = "container">
+    <form action="/Usuario/Cadastrar" method = "POST">
+        <h1>Cadastre-se</h1>
+        <div class="form-group">
+            <label for="nome">Nome:</label>
+            <input type = "text" name = "nome" class="form-control">
+            <label for = "email">Email</label>
+            <input type="text" name = "email" class="form-control">
+            <label for="senha"> Senha: </label>
+            <input type="password" name="senha" class="form-control">
+            <label for = "dataNascimento">Data de Nascimento</label>
+            <input type="date" name = "dataNascimento" class="form-control">
+            <br>
+            <input type="submit" value= "Cadastrar" class="btn btn-secondary btn-lg btn-block">
+        </div>
+    </form>
+</div><!--fim do container aqui eu copiei as "class" do bootStrap e ele já encaminhou a "maquiagem" necessária-->

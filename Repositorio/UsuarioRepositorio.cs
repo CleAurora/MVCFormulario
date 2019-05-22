@@ -19,7 +19,7 @@ namespace ex2WebMVC.Repositorio
             sw.Close();
 
             return usuario;
-        }
+        }//fim cadastrar
 
         public List<UsuarioModel> Listar(){
             List<UsuarioModel> listaDeUsuarios = new List<UsuarioModel>();
@@ -44,6 +44,36 @@ namespace ex2WebMVC.Repositorio
                 listaDeUsuarios.Add(usuario);
             }
             return listaDeUsuarios;
+        }//fim listar
+
+        public UsuarioModel BuscarPorId(int id){
+            List<UsuarioModel> listaDeUsuarios = Listar();
+
+            foreach (var item in listaDeUsuarios)
+            {
+                if(id == item.Id){
+                    return item;//retorna o usuário
+                }
+            }
+            return null;
+        }//fim buscar por id
+
+        public UsuarioModel EditarUsuario(UsuarioModel usuario){
+            string[] linhas = File.ReadAllLines("usuarios.csv");
+            
+            for (int i=0; i<linhas.Length; i++){
+                if(string.IsNullOrEmpty(linhas[i])){
+                    continue;
+                }
+                string[] dadosDaLinha = linhas[i].Split(";");
+                //Vamos ver se o id do usuario é igual ao da linha
+                if(usuario.Id.ToString() == dadosDaLinha[0]){
+                    linhas[i] = $"{usuario.Id};{usuario.Nome};{usuario.Email};{usuario.Senha};{usuario.DataNascimento}";
+                    break;
+                }
+            }//fim for
+            File.WriteAllLines("usuarios.csv", linhas);
+            return usuario;
         }
     }
 }

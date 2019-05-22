@@ -35,6 +35,35 @@ namespace ex2WebMVC.Controllers
             ViewData["usuarios"] = usuarioRepositorio.Listar();
 
             return View();
+        }// fim listar
+
+        [HttpGet]
+        public IActionResult Editar(int id){
+            UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+            UsuarioModel usuarioRecuperado = usuarioRepositorio.BuscarPorId(id);
+            if(usuarioRecuperado != null){
+                ViewBag.usuario = usuarioRecuperado; //Viewbag é o elemento que armazena meu usuario recuperado e o transfere para a minha View
+            }else{
+                TempData["mensagem"] = "Usuário não encontrado";
+                return RedirectToAction("Listar");
+            }
+            return View();
+        }//serve para eu buscar o usuario e levar para a view
+    
+        [HttpPost]
+        public IActionResult Editar(IFormCollection form){
+            UsuarioModel usuario = new UsuarioModel(
+                id: int.Parse(form["id"]),
+                nome: form["nome"],
+                email: form["email"],
+                senha: form["senha"],
+                dataNascimento: DateTime.Parse(form["dataNascimento"])
+            );
+            UsuarioRepositorio usuarioRepositorio = new UsuarioRepositorio();
+            usuarioRepositorio.EditarUsuario(usuario);
+
+            TempData["mensagem"] = $"{usuario.Nome} editado com sucesso";
+            return RedirectToAction("Listar");
         }
     }
 }
